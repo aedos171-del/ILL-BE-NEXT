@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="ILL BE NEXT. Barbería, estilo y precisión. Descubre nuestros servicios y solicita tu cita."
+  >
+
+  <meta name="theme-color" content="#0b0b0b">
+
+  <title>ILL BE NEXT | Barbería premium</title>
+
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --surface: #141414;
+      --surface-light: #1c1c1c;
+      --gold: #d4af37;
+      --gold-light: #f0d77a;
+      --white: #f5f5f5;
+      --muted: #aaa;
+      --border: #303030;
+      --radius: 14px;
+      --width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a,
+    input,
+    select {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--gold-light);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(var(--width), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 13px 22px;
+      border: 1px solid var(--gold);
+      border-radius: 5px;
+      background: var(--gold);
+      color: #111;
+      font-weight: 800;
+      transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--gold-light);
+    }
+
+    .button-outline {
+      background: transparent;
+      color: var(--gold);
+    }
+
+    .button-outline:hover {
+      background: var(--gold);
+      color: #111;
+    }
+
+    /* Navegación */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 11, 11, .94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 13px;
+      color: #ddd;
+    }
+
+    .nav-links a:not(.button):hover {
+      color: var(--gold);
+    }
+
+    .nav-links .button {
+      min-height: 40px;
+      padding: 9px 15px;
+    }
+
+    /* Portada */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 570px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(
+          ellipse at 80% 35%,
+          rgba(212, 175, 55, .13),
+          transparent 40%
+        ),
+        linear-gradient(135deg, #111 0%, #090909 70%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-content {
+      max-width: 780px;
+      padding-block: 100px;
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 20px 0;
+      font-size: clamp(44px, 8vw, 88px);
+      line-height: .99;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      max-width: 510px;
+      color: #bdbdbd;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-note {
+      margin-top: 35px;
+      color: #888;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* Secciones */
+
+    .section {
+      padding-block: 90px;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 12px 0;
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.15;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* Servicios */
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 250px;
+      padding: 27px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition:
+        transform .2s ease,
+        border-color .2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+    }
+
+    .service-number {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .service-card h3 {
+      margin-top: 24px;
+      font-size: 23px;
+    }
+
+    .service-card p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .price {
+      margin-top: auto;
+      padding-top: 24px;
+      color: var(--gold);
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .price small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    /* Franja de marca */
+
+    .brand-strip {
+      padding: 32px 20px;
+      border-block: 1px solid var(--border);
+      background: #101010;
+      text-align: center;
+    }
+
+    .brand-strip p {
+      color: #bbb;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    /* Reservas */
+
+    .booking-section {
+      background:
+        radial-gradient(
+          ellipse at 50% 0%,
+          rgba(212, 175, 55, .07),
+          transparent 60%
+        );
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 45px;
+      align-items: start;
+    }
+
+    .booking-info h2 {
+      margin: 12px 0 20px;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.1;
+    }
+
+    .booking-info > p {
+      color: var(--muted);
+    }
+
+    .booking-point {
+      margin-top: 24px;
+      padding-left: 15px;
+      border-left: 2px solid var(--gold);
+    }
+
+    .booking-point strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .booking-point p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .booking-form {
+      padding: clamp(20px, 4vw, 34px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .booking-form h3 {
+      margin-bottom: 7px;
+      font-size: 25px;
+    }
+
+    .form-intro {
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .field {
+      margin-top: 17px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px;
+      border: 1px solid #414141;
+      border-radius: 6px;
+      background: #0d0d0d;
+      color: var(--white);
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .form-notice {
+      margin-top: 14px;
+      color: #999;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* Pie */
+
+    .footer {
+      padding-block: 35px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer .brand {
+      display: inline-block;
+    }
+
+    .footer p {
+      margin-top: 10px;
+      color: #888;
+      font-size: 12px;
+    }
+
+    /* Móviles */
+
+    @media (max-width: 760px) {
+      .nav {
+        min-height: 68px;
+      }
+
+      .brand {
+        font-size: 16px;
+        letter-spacing: 2px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .nav-links .button {
+        padding: 8px 10px;
+      }
+
+      .nav-links a:not(.button) {
+        display: none;
+      }
+
+      .hero {
+        min-height: 490px;
+      }
+
+      .hero-content {
+        padding-block: 75px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        min-height: 215px;
+      }
+
+      .section {
+        padding-block: 65px;
+      }
+
+      .booking-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="#inicio">
+        ILL BE <span>NEXT</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">La marca</a>
+        <a class="button" href="#reservar">Reservar cita</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-content">
+        <span class="eyebrow">Barbería · Estilo · Precisión</span>
+
+        <h1>
+          Tu estilo.<br>
+          Tus reglas.<br>
+          <span>Tu identidad.</span>
+        </h1>
+
+        <p>
+          Cortes clásicos, degradados precisos y cuidado de barba.
+          Un buen corte no cambia quién eres: demuestra quién eres.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button" href="#reservar">Solicitar cita ↗</a>
+          <a class="button button-outline" href="#servicios">
+            Ver servicios
+          </a>
+        </div>
+
+        <p class="hero-note">
+          PRECISIÓN EN CADA DETALLE. PERSONALIDAD EN CADA CORTE.
+        </p>
+      </div>
+    </section>
+
+    <section class="section container" id="servicios">
+      <div class="section-heading">
+        <span class="eyebrow">Qué hacemos</span>
+        <h2>El corte adecuado.<br><span class="gold">El acabado perfecto.</span></h2>
+        <p>
+          Servicios sencillos, resultados cuidados y atención al detalle.
+        </p>
+      </div>
+
+      <div class="services">
+        <article class="service-card">
+          <span class="service-number">01 / CLÁSICO</span>
+          <h3>Corte clásico</h3>
+          <p>Un estilo limpio y atemporal, adaptado a tu imagen.</p>
+          <div class="price">15 € <small>/ servicio</small></div>
+        </article>
+
+        <article class="service-card">
+          <span class="service-number">02 / PRECISIÓN</span>
+          <h3>Degradado</h3>
+          <p>Transiciones cuidadas y acabado moderno.</p>
+          <div class="price">22 € <small>/ servicio</small></div>
+        </article>
+
+        <article class="service-card">
+          <span class="service-number">03 / DETALLE</span>
+          <h3>Arreglo de barba</h3>
+          <p>Perfilado y definición para un resultado equilibrado.</p>
+          <div class="price">10 € <small>/ servicio</small></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="brand-strip" id="nosotros">
+      <p>ESTILO · PRECISIÓN · PERSONALIDAD</p>
+    </section>
+
+    <section class="section booking-section" id="reservar">
+      <div class="container booking-layout">
+
+        <div class="booking-info">
+          <span class="eyebrow">Tu próxima cita</span>
+          <h2>Reserva tu<br><span class="gold">momento.</span></h2>
+
+          <p>
+            Selecciona el servicio y dinos qué día y hora prefieres.
+            Recibiremos tu solicitud y podremos revisar los detalles.
+          </p>
+
+          <div class="booking-point">
+            <strong>01. Elige tu servicio</strong>
+            <p>Consulta los servicios y sus precios antes de solicitar cita.</p>
+          </div>
+
+          <div class="booking-point">
+            <strong>02. Indica tu horario</strong>
+            <p>Selecciona la fecha y hora que prefieres.</p>
+          </div>
+
+          <div class="booking-point">
+            <strong>03. Espera la confirmación</strong>
+            <p>La solicitud no garantiza que el horario esté disponible.</p>
+          </div>
+        </div>
+
+        <form
+          class="booking-form"
+          id="formulario-reserva"
+          action="https://formsubmit.app/f/zd3x8fymwe"
+          method="POST"
+        >
+          <h3>Solicitar una cita</h3>
+          <p class="form-intro">
+            Completa los campos para enviar tu solicitud.
+          </p>
+
+          <input
+            type="hidden"
+            name="_subject"
+            value="Nueva solicitud de cita - ILL BE NEXT"
+          >
+
+          <div class="field">
+            <label for="nombre">Nombre</label>
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              placeholder="Tu nombre"
+              autocomplete="name"
+              maxlength="80"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="servicio">Servicio</label>
+            <select id="servicio" name="servicio" required>
+              <option value="">Selecciona un servicio</option>
+              <option value="Corte clásico - 15 €">
+                Corte clásico — 15 €
+              </option>
+              <option value="Degradado - 22 €">
+                Degradado — 22 €
+              </option>
+              <option value="Arreglo de barba - 10 €">
+                Arreglo de barba — 10 €
+              </option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="fecha">Fecha preferida</label>
+            <input
+              id="fecha"
+              name="fecha"
+              type="date"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="hora">Hora preferida</label>
+            <select id="hora" name="hora" required>
+              <option value="">Selecciona una hora</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+            </select>
+          </div>
+
+          <button class="button form-submit" type="submit">
+            Enviar solicitud ↗
+          </button>
+
+          <p class="form-notice">
+            Enviar el formulario no confirma la cita. La fecha y la hora
+            deben comprobarse antes de confirmar la reserva.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand" href="#inicio">
+      ILL BE <span class="gold">NEXT</span>
+    </a>
+    <p>Proyecto web de práctica · 2026</p>
+  </footer>
+
+  <script>
+    // Impedir que se seleccionen fechas anteriores a hoy.
+    const campoFecha = document.getElementById("fecha");
+
+    const hoy = new Date();
+    const anio = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, "0");
+    const dia = String(hoy.getDate()).padStart(2, "0");
+
+    campoFecha.min = `${anio}-${mes}-${dia}`;
+  </script>
+
+</body>
+</html>
